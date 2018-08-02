@@ -26,6 +26,7 @@
 		C284F0A620F63CBB009AF6E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C284F09C20F63CBB009AF6E9 /* Assets.xcassets */; };
 		C284F0A720F63CBB009AF6E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C284F09E20F63CBB009AF6E9 /* LaunchScreen.storyboard */; };
 		C284F0A820F63CBB009AF6E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C284F0A020F63CBB009AF6E9 /* Main.storyboard */; };
+		C297683F2112F9DD006ED0B7 /* Decodable+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C297683E2112F9DD006ED0B7 /* Decodable+Safe.swift */; };
 		C29D5E2820F63BD60053D2AB /* NetworkingInOperations_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D5E2720F63BD60053D2AB /* NetworkingInOperations_ExampleTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		C284F09C20F63CBB009AF6E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C284F09F20F63CBB009AF6E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C284F0A120F63CBB009AF6E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C297683E2112F9DD006ED0B7 /* Decodable+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Safe.swift"; sourceTree = "<group>"; };
 		C29D5E0D20F63BD50053D2AB /* NetworkingInOperations-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NetworkingInOperations-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29D5E2320F63BD60053D2AB /* NetworkingInOperations-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NetworkingInOperations-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29D5E2720F63BD60053D2AB /* NetworkingInOperations_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingInOperations_ExampleTests.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		3DFEAD2C210DE5B80076C30A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C297683D2112F9C7006ED0B7 /* Decodable */,
 				3DFEAD2D210DE5B80076C30A /* NSObject */,
 			);
 			path = Extensions;
@@ -255,6 +258,14 @@
 				C284F0A020F63CBB009AF6E9 /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C297683D2112F9C7006ED0B7 /* Decodable */ = {
+			isa = PBXGroup;
+			children = (
+				C297683E2112F9DD006ED0B7 /* Decodable+Safe.swift */,
+			);
+			path = Decodable;
 			sourceTree = "<group>";
 		};
 		C29D5E0420F63BD40053D2AB = {
@@ -406,6 +417,7 @@
 				3DFEAD37210E1DA10076C30A /* AvatarRetrievalOperation.swift in Sources */,
 				C21F1CB320F902E100D4138F /* URLRequest+HTTPBody.swift in Sources */,
 				3DFEAD1F210DE0310076C30A /* QuestionsDataManager.swift in Sources */,
+				C297683F2112F9DD006ED0B7 /* Decodable+Safe.swift in Sources */,
 				3DFEAD26210DE14A0076C30A /* QuestionsURLRequestFactory.swift in Sources */,
 				3DFEAD21210DE0860076C30A /* Question.swift in Sources */,
 				C21F1CB520F902E100D4138F /* URLRequestFactory.swift in Sources */,

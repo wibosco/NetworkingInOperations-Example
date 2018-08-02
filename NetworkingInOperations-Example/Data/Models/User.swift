@@ -14,6 +14,8 @@ struct User: Codable, Equatable {
     let name: String
     let avatarURL: String
     
+    // MARK: - CodingKeys
+    
     enum CodingKeys: String, CodingKey {
         case userID = "user_id"
         case name = "display_name"

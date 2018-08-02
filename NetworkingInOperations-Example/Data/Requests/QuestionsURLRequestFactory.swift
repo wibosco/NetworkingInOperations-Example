@@ -13,7 +13,7 @@ class QuestionsURLRequestFactory: URLRequestFactory {
     // MARK: - Retrieval
     
     func requestToRetrieveQuestions() -> URLRequest {
-        var request = jsonRequest(endPoint: "questions?order=desc&sort=activity&tagged=ios&site=stackoverflow")
+        var request = jsonRequest(endPoint: "questions?order=desc&sort=activity&tagged=ios&pagesize=100&site=stackoverflow")
         request.httpMethod = HTTPRequestMethod.get.rawValue
         
         return request

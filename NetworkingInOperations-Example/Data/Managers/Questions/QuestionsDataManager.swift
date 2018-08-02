@@ -25,5 +25,4 @@ class QuestionsDataManager {
         operation.completionHandler = completionHandler
         queueManager.enqueue(operation)
     }
-    
 }
