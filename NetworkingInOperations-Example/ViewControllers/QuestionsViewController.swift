@@ -17,6 +17,10 @@ class QuestionsViewController: UIViewController {
     fileprivate let questionDataManager = QuestionsDataManager()
     fileprivate var questions = [Question]()
     
+    fileprivate var pageIndex: Int = 0
+    fileprivate var retrievingQuestions: Bool = false
+    fileprivate var hasMoreQuestionsToBeRetrieved: Bool = true
+    
     // MARK: - ViewLifecycle
     
     override func viewDidLoad() {
@@ -27,21 +31,29 @@ class QuestionsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
-        retrieveQuestions()
+        retrieveQuestions(pageIndex: pageIndex)
     }
     
     // MARK: - Questions
     
-    private func retrieveQuestions() {
+    private func retrieveQuestions(pageIndex: Int) {
+        guard retrievingQuestions == false else {
+            return
+        }
+        
+        retrievingQuestions = true
         tableView.tableFooterView = loadingFooterView
-        questionDataManager.retrievalQuestions { (result) in
+        questionDataManager.retrievalQuestions(pageIndex: pageIndex) { (result) in
             self.tableView.tableFooterView = nil
+            self.retrievingQuestions = false
             switch result {
             case .failure(let error):
-                print("Error: \(error)")
+                print("ERROR: \(error)")
                 self.tableView.tableFooterView = self.errorFooterView
-            case .success(let questions):
-                self.questions = questions
+            case .success(let page):
+                self.hasMoreQuestionsToBeRetrieved = page.hasMore
+                self.pageIndex += 1
+                self.questions.append(contentsOf: page.questions)
                 self.tableView.reloadData()
             }
         }
@@ -66,6 +78,15 @@ extension QuestionsViewController: UITableViewDataSource {
         cell.configure(question: question)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        let triggerRetrievalFromLimit = 15
+        
+        if hasMoreQuestionsToBeRetrieved && (triggerRetrievalFromLimit > (questions.count - row)) {
+            retrieveQuestions(pageIndex: pageIndex)
+        }
     }
 }
 

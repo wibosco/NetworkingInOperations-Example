@@ -13,11 +13,13 @@ private struct DummyCodable: Codable {}
 struct QuestionPage: Codable {
     
     let questions: [Question]
+    let hasMore: Bool
     
     // MARK: - CodingKeys
     
     enum CodingKeys: String, CodingKey {
         case questions = "items"
+        case hasMore = "has_more"
     }
     
     // MARK: - Init
@@ -25,6 +27,7 @@ struct QuestionPage: Codable {
     init(from decoder: Decoder) throws {        
         let container = try decoder.container(keyedBy: CodingKeys.self)
         questions = try container.decodeArrayByIgnoringInvalidElements(Question.self, forKey: .questions)
+        hasMore = try container.decode(Bool.self, forKey: .hasMore)
     }
 }
 

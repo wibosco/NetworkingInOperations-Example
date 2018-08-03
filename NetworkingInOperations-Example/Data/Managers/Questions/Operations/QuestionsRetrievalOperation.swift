@@ -8,15 +8,17 @@
 
 import Foundation
 
-class QuestionsRetrievalOperation: ConcurrentOperation<[Question]> {
+class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage> {
     
     private let session: URLSession
     private let urlRequestFactory: QuestionsURLRequestFactory
     private var task: URLSessionTask?
+    private let pageIndex: Int
     
     // MARK: - Init
     
-    init(session: URLSession = URLSession.shared, urlRequestFactory: QuestionsURLRequestFactory = QuestionsURLRequestFactory()) {
+    init(pageIndex: Int, session: URLSession = URLSession.shared, urlRequestFactory: QuestionsURLRequestFactory = QuestionsURLRequestFactory()) {
+        self.pageIndex = pageIndex
         self.session = session
         self.urlRequestFactory = urlRequestFactory
     }
@@ -24,7 +26,7 @@ class QuestionsRetrievalOperation: ConcurrentOperation<[Question]> {
     // MARK: - Start
     
     override func start() {
-        let urlRequest = urlRequestFactory.requestToRetrieveQuestions()
+        let urlRequest = urlRequestFactory.requestToRetrieveQuestions(pageIndex: pageIndex)
         
         task = session.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data else {
@@ -42,7 +44,7 @@ class QuestionsRetrievalOperation: ConcurrentOperation<[Question]> {
                 let page = try JSONDecoder().decode(QuestionPage.self, from: data)
                 
                 DispatchQueue.main.async {
-                    self.complete(result: .success(page.questions))
+                    self.complete(result: .success(page))
                 }
             } catch let error {
                 DispatchQueue.main.async {
