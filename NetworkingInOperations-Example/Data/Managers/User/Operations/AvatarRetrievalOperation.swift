@@ -22,9 +22,9 @@ class AvatarRetrievalOperation: ConcurrentOperation<(User, UIImage)>  {
         self.user = user
     }
     
-    // MARK: - Start
+    // MARK: - Main
     
-    override func start() {
+    override func main() {
         guard let avatarURL = URL(string: user.avatarURL) else {
             cancel()
             return

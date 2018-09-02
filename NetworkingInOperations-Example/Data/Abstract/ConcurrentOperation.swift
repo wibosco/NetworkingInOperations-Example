@@ -62,11 +62,16 @@ class ConcurrentOperation<T>: Operation {
     // MARK: - Control
     
     override func start() {
-        super.start()
+        guard !isCancelled else {
+            finish()
+            return
+        }
         
         if !isExecuting {
             state = .executing
         }
+        
+        main()
     }
     
     func finish() {
@@ -77,8 +82,10 @@ class ConcurrentOperation<T>: Operation {
     
     func complete(result: DataRequestResult<T>) {
         finish()
-        
-        completionHandler?(result)
+    
+        if !isCancelled {
+            completionHandler?(result)
+        }
     }
     
     override func cancel() {

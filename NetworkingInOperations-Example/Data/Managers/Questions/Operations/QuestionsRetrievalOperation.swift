@@ -23,9 +23,9 @@ class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage> {
         self.urlRequestFactory = urlRequestFactory
     }
     
-    // MARK: - Start
+    // MARK: - Main
     
-    override func start() {
+    override func main() {
         let urlRequest = urlRequestFactory.requestToRetrieveQuestions(pageIndex: pageIndex)
         
         task = session.dataTask(with: urlRequest) { (data, response, error) in
