@@ -8,8 +8,6 @@
 
 import Foundation
 
-private struct DummyCodable: Codable {}
-
 struct QuestionPage: Codable {
     
     let questions: [Question]

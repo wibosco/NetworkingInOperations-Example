@@ -27,6 +27,7 @@ extension UnkeyedDecodingContainer {
         return decodedArray
     }
 }
+
 extension KeyedDecodingContainerProtocol {
     
     public func decodeArrayByIgnoringInvalidElements<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T] where T : Decodable {
