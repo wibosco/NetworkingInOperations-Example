@@ -20,15 +20,13 @@ class ConcurrentOperation<T>: Operation {
     
     var completionHandler: (OperationCompletionHandler)?
     
-    // MARK: - Types
+    // MARK: - State
     
     enum State: String {
-        case ready = "isReady",
-        executing = "isExecuting",
-        finished = "isFinished"
+        case ready = "isReady"
+        case executing = "isExecuting"
+        case finished = "isFinished"
     }
-    
-    // MARK: - Properties
     
     var state = State.ready {
         willSet {
@@ -40,8 +38,6 @@ class ConcurrentOperation<T>: Operation {
             didChangeValue(forKey: state.rawValue)
         }
     }
-    
-    // MARK: - Operation
     
     override var isReady: Bool {
         return super.isReady && state == .ready
@@ -55,11 +51,13 @@ class ConcurrentOperation<T>: Operation {
         return state == .finished
     }
     
+    // MARK: - Asynchronous
+    
     override var isAsynchronous: Bool {
         return true
     }
     
-    // MARK: - Control
+    // MARK: - Start
     
     override func start() {
         guard !isCancelled else {
@@ -73,6 +71,8 @@ class ConcurrentOperation<T>: Operation {
         
         main()
     }
+    
+    // MARK: - Finish
     
     func finish() {
         if isExecuting {
@@ -88,6 +88,8 @@ class ConcurrentOperation<T>: Operation {
         }
     }
     
+    // MARK: - Cancel
+
     override func cancel() {
         super.cancel()
         
