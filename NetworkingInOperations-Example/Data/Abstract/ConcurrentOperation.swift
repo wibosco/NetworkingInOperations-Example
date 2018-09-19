@@ -22,13 +22,13 @@ class ConcurrentOperation<T>: Operation {
     
     // MARK: - State
     
-    enum State: String {
+    private enum State: String {
         case ready = "isReady"
         case executing = "isExecuting"
         case finished = "isFinished"
     }
     
-    var state = State.ready {
+    private var state = State.ready {
         willSet {
             willChangeValue(forKey: newValue.rawValue)
             willChangeValue(forKey: state.rawValue)
