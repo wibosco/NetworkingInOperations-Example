@@ -55,8 +55,7 @@ class AvatarRetrievalOperation: ConcurrentOperation<(User, UIImage)>  {
     // MARK: - Cancel
     
     override func cancel() {
-        super.cancel()
         task?.cancel()
-        finish()
+        super.cancel()
     }
 }

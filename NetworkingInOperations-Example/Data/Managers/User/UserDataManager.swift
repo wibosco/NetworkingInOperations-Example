@@ -21,7 +21,7 @@ class UserDataManager {
     
     // MARK: - Avatar
     
-    func retrieveAvatar(forUser user: User, completionHandler: @escaping (_ result: DataRequestResult<(User, UIImage)>) -> Void) {
+    func retrieveAvatar(forUser user: User, completionHandler: @escaping (_ result: Result<(User, UIImage)>) -> Void) {
         let operation = AvatarRetrievalOperation(user: user)
         operation.completionHandler = completionHandler
         queueManager.enqueue(operation)

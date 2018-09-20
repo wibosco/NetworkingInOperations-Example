@@ -60,8 +60,7 @@ class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage> {
     // MARK: - Cancel
     
     override func cancel() {
-        super.cancel()
         task?.cancel()
-        finish()
+        super.cancel()
     }
 }

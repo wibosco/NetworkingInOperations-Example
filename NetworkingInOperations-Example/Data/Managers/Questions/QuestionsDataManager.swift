@@ -20,7 +20,7 @@ class QuestionsDataManager {
     
     // MARK: - Retrieval
     
-    func retrievalQuestions(pageIndex: Int, completionHandler: @escaping (_ result: DataRequestResult<QuestionPage>) -> Void) {
+    func retrievalQuestions(pageIndex: Int, completionHandler: @escaping (_ result: Result<QuestionPage>) -> Void) {
         let operation = QuestionsRetrievalOperation(pageIndex: pageIndex)
         operation.completionHandler = completionHandler
         queueManager.enqueue(operation)

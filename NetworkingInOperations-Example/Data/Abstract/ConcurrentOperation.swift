@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-enum DataRequestResult<T> {
+enum Result<T> {
     case success(T)
     case failure(Error)
 }
 
 class ConcurrentOperation<T>: Operation {
     
-    typealias OperationCompletionHandler = (_ result: DataRequestResult<T>) -> Void
+    typealias OperationCompletionHandler = (_ result: Result<T>) -> Void
     
     var completionHandler: (OperationCompletionHandler)?
     
@@ -51,12 +51,6 @@ class ConcurrentOperation<T>: Operation {
         return state == .finished
     }
     
-    // MARK: - Asynchronous
-    
-    override var isAsynchronous: Bool {
-        return true
-    }
-    
     // MARK: - Start
     
     override func start() {
@@ -80,7 +74,7 @@ class ConcurrentOperation<T>: Operation {
         }
     }
     
-    func complete(result: DataRequestResult<T>) {
+    func complete(result: Result<T>) {
         finish()
     
         if !isCancelled {
