@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DA271FC20F7D1E6001642D8 /* QueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA271F920F7D1E6001642D8 /* QueueManager.swift */; };
+		3DA271FC20F7D1E6001642D8 /* OperationQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA271F920F7D1E6001642D8 /* OperationQueueManager.swift */; };
 		3DFEAD1F210DE0310076C30A /* QuestionsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEAD1E210DE0310076C30A /* QuestionsDataManager.swift */; };
 		3DFEAD21210DE0860076C30A /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEAD20210DE0860076C30A /* Question.swift */; };
 		3DFEAD24210DE1040076C30A /* QuestionsRetrievalOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEAD23210DE1040076C30A /* QuestionsRetrievalOperation.swift */; };
@@ -41,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3DA271F920F7D1E6001642D8 /* QueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueManager.swift; sourceTree = "<group>"; };
+		3DA271F920F7D1E6001642D8 /* OperationQueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueueManager.swift; sourceTree = "<group>"; };
 		3DFEAD1E210DE0310076C30A /* QuestionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsDataManager.swift; sourceTree = "<group>"; };
 		3DFEAD20210DE0860076C30A /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		3DFEAD23210DE1040076C30A /* QuestionsRetrievalOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsRetrievalOperation.swift; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		3DA271F820F7D1E6001642D8 /* Queue */ = {
 			isa = PBXGroup;
 			children = (
-				3DA271F920F7D1E6001642D8 /* QueueManager.swift */,
+				3DA271F920F7D1E6001642D8 /* OperationQueueManager.swift */,
 			);
 			path = Queue;
 			sourceTree = "<group>";
@@ -436,7 +436,7 @@
 				3DFEAD34210E1D060076C30A /* UserDataManager.swift in Sources */,
 				3DFEAD28210DE26C0076C30A /* QuestionsViewController.swift in Sources */,
 				3DFEAD31210E159E0076C30A /* User.swift in Sources */,
-				3DA271FC20F7D1E6001642D8 /* QueueManager.swift in Sources */,
+				3DA271FC20F7D1E6001642D8 /* OperationQueueManager.swift in Sources */,
 				C21F1CB420F902E100D4138F /* RequestConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

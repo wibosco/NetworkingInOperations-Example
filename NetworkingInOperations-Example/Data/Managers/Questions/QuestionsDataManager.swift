@@ -9,20 +9,21 @@
 import Foundation
 
 class QuestionsDataManager {
-    
-    private let queueManager: QueueManager
+    private let queueManager: OperationQueueManager
     
     // MARK: - Init
     
-    init(withQueueManager queueManager: QueueManager = QueueManager.shared) {
+    init(withQueueManager queueManager: OperationQueueManager = OperationQueueManager.shared) {
         self.queueManager = queueManager
     }
     
     // MARK: - Retrieval
     
-    func retrievalQuestions(pageIndex: Int, completionHandler: @escaping (_ result: Result<QuestionPage>) -> Void) {
-        let operation = QuestionsRetrievalOperation(pageIndex: pageIndex)
-        operation.completionHandler = completionHandler
+    func retrievalQuestions(pageIndex: Int,
+                            completionHandler: @escaping (_ result: Result<QuestionPage, Error>) -> Void) {
+        let operation = QuestionsRetrievalOperation(pageIndex: pageIndex,
+                                                    completionHandler: completionHandler)
+
         queueManager.enqueue(operation)
     }
 }

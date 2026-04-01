@@ -1,14 +1,14 @@
 //
-//  QueueManager.swift
-//  BikePoint
+//  OperationQueueManager.swift
+//  NetworkingInOperations-Example
 //
-//  Created by William Boles on 23/06/2017.
-//  Copyright © 2017 Springtiger. All rights reserved.
+//  Created by William Boles on 29/07/2018.
+//  Copyright © 2018 Boles. All rights reserved.
 //
 
 import Foundation
 
-class QueueManager {
+class OperationQueueManager {
     
     lazy var queue: OperationQueue = {
         let queue = OperationQueue()
@@ -18,7 +18,7 @@ class QueueManager {
 
     // MARK: - Singleton
     
-    static let shared = QueueManager()
+    static let shared = OperationQueueManager()
     
     // MARK: - Addition
     

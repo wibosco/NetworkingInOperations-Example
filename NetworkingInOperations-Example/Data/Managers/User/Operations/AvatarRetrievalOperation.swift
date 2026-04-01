@@ -9,17 +9,20 @@
 import Foundation
 import UIKit
 
-class AvatarRetrievalOperation: ConcurrentOperation<(User, UIImage)>  {
- 
+class AvatarRetrievalOperation: ConcurrentOperation<(User, UIImage)>, @unchecked Sendable  {
     private let session: URLSession
     private let user: User
     private var task: URLSessionTask?
     
     // MARK: - Init
     
-    init(session: URLSession = URLSession.shared, user: User) {
+    init(session: URLSession = URLSession.shared,
+         user: User,
+         completionHandler: @escaping (_ result: Result<(User, UIImage), Error>) -> Void) {
         self.session = session
         self.user = user
+        
+        super.init(completionHandler: completionHandler)
     }
     
     // MARK: - Main
@@ -36,16 +39,16 @@ class AvatarRetrievalOperation: ConcurrentOperation<(User, UIImage)>  {
                 let image = UIImage(data: data) else {
                 DispatchQueue.main.async {
                     if let error = error {
-                        self.complete(result: .failure(error))
+                        self.finish(result: .failure(error))
                     } else {
-                        self.complete(result: .failure(APIError.missingData))
+                        self.finish(result: .failure(APIError.missingData))
                     }
                 }
                 return
             }
             
             DispatchQueue.main.async {
-                self.complete(result: .success((self.user, image)))
+                self.finish(result: .success((self.user, image)))
             }
         }
         

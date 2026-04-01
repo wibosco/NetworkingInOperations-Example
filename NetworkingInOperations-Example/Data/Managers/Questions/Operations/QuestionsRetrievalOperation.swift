@@ -8,8 +8,7 @@
 
 import Foundation
 
-class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage> {
-    
+class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage>, @unchecked Sendable {
     private let session: URLSession
     private let urlRequestFactory: QuestionsURLRequestFactory
     private var task: URLSessionTask?
@@ -17,10 +16,15 @@ class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage> {
     
     // MARK: - Init
     
-    init(pageIndex: Int, session: URLSession = URLSession.shared, urlRequestFactory: QuestionsURLRequestFactory = QuestionsURLRequestFactory()) {
+    init(pageIndex: Int,
+         session: URLSession = URLSession.shared,
+         urlRequestFactory: QuestionsURLRequestFactory = QuestionsURLRequestFactory(),
+         completionHandler: @escaping (_ result: Result<QuestionPage, Error>) -> Void) {
         self.pageIndex = pageIndex
         self.session = session
         self.urlRequestFactory = urlRequestFactory
+        
+        super.init(completionHandler: completionHandler)
     }
     
     // MARK: - Main
@@ -32,9 +36,9 @@ class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage> {
             guard let data = data else {
                 DispatchQueue.main.async {
                     if let error = error {
-                        self.complete(result: .failure(error))
+                        self.finish(result: .failure(error))
                     } else {
-                        self.complete(result: .failure(APIError.missingData))
+                        self.finish(result: .failure(APIError.missingData))
                     }
                 }
                 return
@@ -44,12 +48,12 @@ class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage> {
                 let page = try JSONDecoder().decode(QuestionPage.self, from: data)
                 
                 DispatchQueue.main.async {
-                    self.complete(result: .success(page))
+                    self.finish(result: .success(page))
                 }
             } catch let error {
                 DispatchQueue.main.async {
                     print(error)
-                    self.complete(result: .failure(APIError.serialization))
+                    self.finish(result: .failure(APIError.serialization))
                 }
             }
         }

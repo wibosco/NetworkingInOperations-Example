@@ -9,16 +9,24 @@
 import Foundation
 import UIKit
 
-enum Result<T> {
-    case success(T)
-    case failure(Error)
+enum ConcurrentOperationError: Error, Equatable {
+    case cancelled
 }
 
-class ConcurrentOperation<T>: Operation {
+class ConcurrentOperation<Value>: Operation, @unchecked Sendable  {
+    typealias OperationCompletionHandler = (_ result: Result<Value, Error>) -> Void
     
-    typealias OperationCompletionHandler = (_ result: Result<T>) -> Void
+    private(set) var completionHandler: (OperationCompletionHandler)?
     
-    var completionHandler: (OperationCompletionHandler)?
+    private let lock = NSRecursiveLock()
+    
+    // MARK: - Init
+    
+    init(completionHandler: @escaping (_ result: Result<Value, Error>) -> Void) {
+        self.completionHandler = completionHandler
+        
+        super.init()
+    }
     
     // MARK: - State
     
@@ -28,14 +36,29 @@ class ConcurrentOperation<T>: Operation {
         case finished = "isFinished"
     }
     
-    private var state = State.ready {
+    private var _state = State.ready {
         willSet {
             willChangeValue(forKey: newValue.rawValue)
-            willChangeValue(forKey: state.rawValue)
+            willChangeValue(forKey: _state.rawValue)
         }
         didSet {
             didChangeValue(forKey: oldValue.rawValue)
-            didChangeValue(forKey: state.rawValue)
+            didChangeValue(forKey: _state.rawValue)
+        }
+    }
+    
+    private var state: State {
+        get {
+            lock.lock()
+            defer { lock.unlock() }
+            
+            return _state
+        }
+        set {
+            lock.lock()
+            defer { lock.unlock() }
+            
+            _state = newValue
         }
     }
     
@@ -51,42 +74,39 @@ class ConcurrentOperation<T>: Operation {
         return state == .finished
     }
     
-    // MARK: - Start
+    override var isAsynchronous: Bool {
+        return true
+    }
+    
+    // MARK: - Lifecycle
     
     override func start() {
         guard !isCancelled else {
-            finish()
+            finish(result: .failure(ConcurrentOperationError.cancelled))
             return
         }
         
-        if !isExecuting {
-            state = .executing
-        }
+        state = .executing
         
         main()
     }
     
-    // MARK: - Finish
-    
-    func finish() {
-        if isExecuting {
-            state = .finished
+    func finish(result: Result<Value, Error>) {
+        lock.lock()
+        defer { lock.unlock() }
+        
+        guard !isFinished else {
+            return
         }
+        
+        state = .finished
+        
+        completionHandler?(result)
     }
     
-    func complete(result: Result<T>) {
-        finish()
-    
-        if !isCancelled {
-            completionHandler?(result)
-        }
-    }
-    
-    // MARK: - Cancel
-
     override func cancel() {
         super.cancel()
         
-        finish()
+        finish(result: .failure(ConcurrentOperationError.cancelled))
     }
 }
