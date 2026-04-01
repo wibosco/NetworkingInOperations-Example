@@ -10,7 +10,7 @@ import Foundation
 
 class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage>, @unchecked Sendable {
     private let session: URLSession
-    private let urlRequestFactory: QuestionsURLRequestFactory
+    private let urlRequestFactory: QuestionsRequestFactory
     private var task: URLSessionTask?
     private let pageIndex: Int
     
@@ -18,7 +18,7 @@ class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage>, @unchecked
     
     init(pageIndex: Int,
          session: URLSession = URLSession.shared,
-         urlRequestFactory: QuestionsURLRequestFactory = QuestionsURLRequestFactory(),
+         urlRequestFactory: QuestionsRequestFactory = QuestionsRequestFactory(),
          completionHandler: @escaping (_ result: Result<QuestionPage, Error>) -> Void) {
         self.pageIndex = pageIndex
         self.session = session
@@ -30,7 +30,11 @@ class QuestionsRetrievalOperation: ConcurrentOperation<QuestionPage>, @unchecked
     // MARK: - Main
     
     override func main() {
-        let urlRequest = urlRequestFactory.requestToRetrieveQuestions(pageIndex: pageIndex)
+        // TODO: Remove !
+        guard let urlRequest = try? urlRequestFactory.createQuestionsGetRequest(pageIndex: pageIndex) else {
+            self.finish(result: .failure(APIError.invalidRequest))
+            return
+        }
         
         task = session.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data else {
