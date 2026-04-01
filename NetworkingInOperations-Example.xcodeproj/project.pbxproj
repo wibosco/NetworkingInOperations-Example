@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		3DFEAD31210E159E0076C30A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEAD30210E159E0076C30A /* User.swift */; };
 		3DFEAD34210E1D060076C30A /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEAD33210E1D060076C30A /* UserDataManager.swift */; };
 		3DFEAD37210E1DA10076C30A /* AvatarRetrievalOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEAD36210E1DA10076C30A /* AvatarRetrievalOperation.swift */; };
+		4355F6C62F7D77B700B4CFEA /* NetworkingInOperations_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355F6C42F7D77B700B4CFEA /* NetworkingInOperations_ExampleTests.swift */; };
 		C21F1CB020F902E100D4138F /* ConcurrentOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21F1CA420F902E100D4138F /* ConcurrentOperation.swift */; };
 		C21F1CB320F902E100D4138F /* URLRequest+HTTPBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21F1CAC20F902E100D4138F /* URLRequest+HTTPBody.swift */; };
 		C21F1CB420F902E100D4138F /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21F1CAD20F902E100D4138F /* RequestConfig.swift */; };
@@ -27,7 +28,6 @@
 		C284F0A720F63CBB009AF6E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C284F09E20F63CBB009AF6E9 /* LaunchScreen.storyboard */; };
 		C284F0A820F63CBB009AF6E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C284F0A020F63CBB009AF6E9 /* Main.storyboard */; };
 		C297683F2112F9DD006ED0B7 /* Decodable+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C297683E2112F9DD006ED0B7 /* Decodable+Safe.swift */; };
-		C29D5E2820F63BD60053D2AB /* NetworkingInOperations_ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D5E2720F63BD60053D2AB /* NetworkingInOperations_ExampleTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +52,7 @@
 		3DFEAD30210E159E0076C30A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3DFEAD33210E1D060076C30A /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		3DFEAD36210E1DA10076C30A /* AvatarRetrievalOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarRetrievalOperation.swift; sourceTree = "<group>"; };
+		4355F6C42F7D77B700B4CFEA /* NetworkingInOperations_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingInOperations_ExampleTests.swift; sourceTree = "<group>"; };
 		C21F1CA420F902E100D4138F /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		C21F1CAC20F902E100D4138F /* URLRequest+HTTPBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+HTTPBody.swift"; sourceTree = "<group>"; };
 		C21F1CAD20F902E100D4138F /* RequestConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		C297683E2112F9DD006ED0B7 /* Decodable+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Safe.swift"; sourceTree = "<group>"; };
 		C29D5E0D20F63BD50053D2AB /* NetworkingInOperations-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NetworkingInOperations-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C29D5E2320F63BD60053D2AB /* NetworkingInOperations-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NetworkingInOperations-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C29D5E2720F63BD60053D2AB /* NetworkingInOperations_ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingInOperations_ExampleTests.swift; sourceTree = "<group>"; };
 		C29D5E2920F63BD60053D2AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +159,14 @@
 				3DFEAD36210E1DA10076C30A /* AvatarRetrievalOperation.swift */,
 			);
 			path = Operations;
+			sourceTree = "<group>";
+		};
+		4355F6C52F7D77B700B4CFEA /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4355F6C42F7D77B700B4CFEA /* NetworkingInOperations_ExampleTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		C21F1CA220F902E100D4138F /* Data */ = {
@@ -303,7 +311,7 @@
 		C29D5E2620F63BD60053D2AB /* NetworkingInOperations-ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				C29D5E2720F63BD60053D2AB /* NetworkingInOperations_ExampleTests.swift */,
+				4355F6C52F7D77B700B4CFEA /* Tests */,
 				C29D5E2920F63BD60053D2AB /* Info.plist */,
 			);
 			path = "NetworkingInOperations-ExampleTests";
@@ -353,8 +361,9 @@
 		C29D5E0520F63BD40053D2AB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 2630;
 				ORGANIZATIONNAME = Boles;
 				TargetAttributes = {
 					C29D5E0C20F63BD50053D2AB = {
@@ -436,7 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C29D5E2820F63BD60053D2AB /* NetworkingInOperations_ExampleTests.swift in Sources */,
+				4355F6C62F7D77B700B4CFEA /* NetworkingInOperations_ExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +505,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -507,6 +517,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -521,12 +532,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -556,6 +569,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -567,6 +581,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -575,10 +590,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -589,11 +607,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "NetworkingInOperations-Example/Application/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.boles.NetworkingInOperations-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -603,26 +628,40 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "NetworkingInOperations-Example/Application/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.boles.NetworkingInOperations-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		C29D5E3020F63BD60053D2AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "NetworkingInOperations-ExampleTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.boles.NetworkingInOperations-ExampleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetworkingInOperations-Example.app/NetworkingInOperations-Example";
 			};
 			name = Debug;
@@ -630,15 +669,22 @@
 		C29D5E3120F63BD60053D2AB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "NetworkingInOperations-ExampleTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.boles.NetworkingInOperations-ExampleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetworkingInOperations-Example.app/NetworkingInOperations-Example";
 			};
 			name = Release;

@@ -28,7 +28,7 @@ class QuestionsViewController: UIViewController {
         
         title = "Questions"
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
         
         retrieveQuestions(pageIndex: pageIndex)
