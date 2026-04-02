@@ -9,17 +9,14 @@
 import UIKit
 
 class QuestionsViewController: UIViewController {
-
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingFooterView: UIView!
     @IBOutlet weak var errorFooterView: UIView!
     
-    fileprivate let questionDataManager = QuestionsDataManager()
-    fileprivate var questions = [Question]()
+    private let questionDataManager = QuestionsDataManager(withQueue: OperationQueue())
+    private var questions = [Question]()
     
-    fileprivate var pageIndex: Int = 0
-    fileprivate var retrievingQuestions: Bool = false
-    fileprivate var hasMoreQuestionsToBeRetrieved: Bool = true
+    private var retrievingQuestions: Bool = false
     
     // MARK: - ViewLifecycle
     
@@ -31,29 +28,27 @@ class QuestionsViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
         
-        retrieveQuestions(pageIndex: pageIndex)
+        retrieveQuestions()
     }
     
     // MARK: - Questions
     
-    private func retrieveQuestions(pageIndex: Int) {
+    private func retrieveQuestions() {
         guard retrievingQuestions == false else {
             return
         }
         
         retrievingQuestions = true
         tableView.tableFooterView = loadingFooterView
-        questionDataManager.retrievalQuestions(pageIndex: pageIndex) { (result) in
+        
+        questionDataManager.retrievalQuestions { (result) in
             self.tableView.tableFooterView = nil
             self.retrievingQuestions = false
             switch result {
-            case .failure(let error):
-                print("ERROR: \(error)")
+            case .failure(_):
                 self.tableView.tableFooterView = self.errorFooterView
-            case .success(let page):
-                self.hasMoreQuestionsToBeRetrieved = page.hasMore
-                self.pageIndex += 1
-                self.questions.append(contentsOf: page.questions)
+            case .success(let questions):
+                self.questions.append(contentsOf: questions)
                 self.tableView.reloadData()
             }
         }
@@ -63,37 +58,26 @@ class QuestionsViewController: UIViewController {
 // MARK: - UITableViewDataSource
 
 extension QuestionsViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTableViewCell.className, for: indexPath) as? QuestionTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableViewCell",
+                                                       for: indexPath) as? QuestionTableViewCell else {
             fatalError()
         }
         
         let question = questions[indexPath.row]
-        
         cell.configure(question: question)
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        let triggerRetrievalFromLimit = 15
-        
-        if hasMoreQuestionsToBeRetrieved && (triggerRetrievalFromLimit > (questions.count - row)) {
-            retrieveQuestions(pageIndex: pageIndex)
-        }
     }
 }
 
 // MARK: - UITableViewDelegate
 
 extension QuestionsViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
