@@ -13,7 +13,7 @@ class QuestionsViewController: UIViewController {
     @IBOutlet weak var loadingFooterView: UIView!
     @IBOutlet weak var errorFooterView: UIView!
     
-    private let questionDataManager = QuestionsDataManager(withQueue: OperationQueue())
+    private let questionDataManager = QuestionsDataManager(queue: OperationQueue())
     private var questions = [Question]()
     
     private var retrievingQuestions: Bool = false
@@ -28,12 +28,12 @@ class QuestionsViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
         
-        retrieveQuestions()
+        fetchQuestions()
     }
     
     // MARK: - Questions
     
-    private func retrieveQuestions() {
+    private func fetchQuestions() {
         guard retrievingQuestions == false else {
             return
         }
@@ -41,15 +41,18 @@ class QuestionsViewController: UIViewController {
         retrievingQuestions = true
         tableView.tableFooterView = loadingFooterView
         
-        questionDataManager.retrievalQuestions { (result) in
-            self.tableView.tableFooterView = nil
-            self.retrievingQuestions = false
-            switch result {
-            case .failure(_):
-                self.tableView.tableFooterView = self.errorFooterView
-            case .success(let questions):
-                self.questions.append(contentsOf: questions)
-                self.tableView.reloadData()
+        questionDataManager.fetchQuestions { (result) in
+            DispatchQueue.main.async {
+                self.tableView.tableFooterView = nil
+                self.retrievingQuestions = false
+                
+                switch result {
+                case .failure(_):
+                    self.tableView.tableFooterView = self.errorFooterView
+                case .success(let questions):
+                    self.questions.append(contentsOf: questions)
+                    self.tableView.reloadData()
+                }
             }
         }
     }
