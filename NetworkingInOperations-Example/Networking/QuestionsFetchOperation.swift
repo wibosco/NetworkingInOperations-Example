@@ -32,10 +32,23 @@ class QuestionsFetchOperation: ConcurrentOperation<[Question]>, @unchecked Senda
         urlRequest.httpMethod = "GET"
         
         task = session.dataTask(with: urlRequest) { (data, response, error) in
-            guard let data = data else {
-                let error = error ?? NetworkingError.missingData
+            if let error = error {
                 self.finish(result: .failure(error))
-                
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                self.finish(result: .failure(NetworkingError.missingData))
+                return
+            }
+            
+            guard (200...299).contains(httpResponse.statusCode) else {
+                self.finish(result: .failure(NetworkingError.invalidStatusCode(httpResponse.statusCode)))
+                return
+            }
+            
+            guard let data = data, !data.isEmpty else {
+                self.finish(result: .failure(NetworkingError.missingData))
                 return
             }
             

@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum NetworkingError: Error {
+enum NetworkingError: Error, Equatable {
     case missingData
     case serialization
+    case invalidStatusCode(Int)
 }
