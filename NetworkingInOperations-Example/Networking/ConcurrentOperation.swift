@@ -19,7 +19,7 @@ class ConcurrentOperation<Value>: Operation, @unchecked Sendable  {
     
     // MARK: - Init
     
-    init(completionHandler: @escaping (_ result: Result<Value, Error>) -> Void) {
+    init(completionHandler: ((_ result: Result<Value, Error>) -> Void)?) {
         self.completionHandler = completionHandler
         
         super.init()
