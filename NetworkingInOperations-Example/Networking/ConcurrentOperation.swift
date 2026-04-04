@@ -39,8 +39,8 @@ class ConcurrentOperation<Value>: Operation, @unchecked Sendable  {
             willChangeValue(forKey: newValue.rawValue)
         }
         didSet {
-            didChangeValue(forKey: _state.rawValue)
             didChangeValue(forKey: oldValue.rawValue)
+            didChangeValue(forKey: _state.rawValue)
         }
     }
     
